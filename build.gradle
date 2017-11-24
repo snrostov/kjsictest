@@ -1,0 +1,36 @@
+buildscript {
+    ext.kotlin_version = '1.2.0-rc-39'
+    //ext.kotlin_version = '1.2.0-rc-84'
+
+    repositories {
+        maven {     url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+group 'srostov'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'kotlin2js'
+
+repositories {
+    maven {     url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+}
+
+compileKotlin2Js.configure {
+    kotlinOptions.moduleKind = "umd"
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
